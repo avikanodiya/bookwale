@@ -3,6 +3,7 @@ import './Header.css'
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { useStateValue } from './StateProvider';
+import {Link} from "react-router-dom";
 
 function Header() {
     const[{basket},dispatch] = useStateValue();
@@ -10,9 +11,13 @@ function Header() {
     return (
         //logo
         <div className='header'>
-            <img src="img/pngtree-books-logo-image_79985.png"
-                alt="LOGO"
-                className="header_logo" />
+            <Link to="/">
+                <img
+                    className="header__logo"
+                    src=""
+                    alt="bookshop logo"
+                />
+            </Link>
 
 
             <div className="header_search">
@@ -23,13 +28,15 @@ function Header() {
 
             </div>
 
-            <div className="header_nav">
-                <div className="header__option">
-                    <span className="header_optionLineone">Hello Guest</span>
-                    <span className="header_optionLinetwo">Sign In</span>
+            <div className="header_nav">\
+                <Link to="/login">
+                    <div className="header__option">
+                        <span className="header_optionLineone">Hello Guest</span>
+                        <span className="header_optionLinetwo">Sign In</span>
 
-                </div>
-
+                    </div>
+                </Link>
+                
                 <div className="header__option">
                     <span className="header_optionLineone">Returns &</span>
                     <span className="header_optionLinetwo">Orders</span>
@@ -40,13 +47,16 @@ function Header() {
                     <span className="header_optionLineone">your Deal of</span>
                     <span className="header_optionLinetwo"> the Day</span>
 
-                </div>
+                
+                    </div>
+                <Link to="/checkout">
 
-                <div className="header__optionBasket">
-                    <ShoppingBasketIcon />
-                    <span className="header__optionLinetwo header__basketCount">{basket?.length}</span>
+                    <div className="header__optionBasket">
+                        <ShoppingBasketIcon />
+                        <span className="header__optionLinetwo header__basketCount">{basket?.length}</span>
 
-                </div>
+                    </div>
+                </Link>
 
 
 

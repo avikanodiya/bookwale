@@ -9,7 +9,7 @@
 }
 
 .checkoutProduct__info > button {
-  background: #f0c14b;
+  background: #30bdcf;
   border: 1px solid;
   margin-top: 10px;
   border-color: #a88734 #9c7e31 #846a29;
@@ -29,4 +29,8 @@
 .checkoutProduct__title {
   font-size: 17px;
   font-weight: 800;
+}
+
+.w3-button w3-black w3-round-xlarge {
+  color: #30bdcf;
 }
