@@ -1,0 +1,21 @@
+[debug] [2021-02-15T10:59:35.488Z] ----------------------------------------------------------------------
+[debug] [2021-02-15T10:59:35.490Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\avika\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-02-15T10:59:35.491Z] CLI Version:   9.3.0
+[debug] [2021-02-15T10:59:35.491Z] Platform:      win32
+[debug] [2021-02-15T10:59:35.491Z] Node Version:  v14.15.4
+[debug] [2021-02-15T10:59:35.492Z] Time:          Mon Feb 15 2021 16:29:35 GMT+0530 (India Standard Time)
+[debug] [2021-02-15T10:59:35.492Z] ----------------------------------------------------------------------
+[debug] [2021-02-15T10:59:35.492Z] 
+[debug] [2021-02-15T10:59:35.498Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-02-15T10:59:35.499Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\avika\desktop\latestproject\bookstore
+

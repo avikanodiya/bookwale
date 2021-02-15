@@ -3,10 +3,20 @@ import './Header.css'
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { useStateValue } from './StateProvider';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { auth } from './firebase';
+
 
 function Header() {
-    const[{basket},dispatch] = useStateValue();
+    const [{ basket, user }, dispatch] = useStateValue();
+
+    const handleAuthentication = () => {
+        if (user) {
+            auth.signOut();
+
+        }
+    }
+
 
     return (
         //logo
@@ -29,14 +39,19 @@ function Header() {
             </div>
 
             <div className="header_nav">
-                <Link to="/login">
-                    <div className="header__option">
-                        <span className="header_optionLineone">Hello Guest</span>
-                        <span className="header_optionLinetwo">Sign In</span>
+                
+                    <div onClick={handleAuthentication} className="header__option">
+                    {!user ? <Link to={!user && '/login'}><span className="header_optionLineone">Hello Guest</span></Link> : <div class="dropdown">
+                            <button class="dropbtn header_optionLineone" ><span>{user.email}</span></button>
+                            <div class="dropdown-content">
+                                <a href="#">Change password</a>
+                            <Link to="/"><a>Sign Out</a></Link>
+                            </div>
+                        </div>}
 
                     </div>
-                </Link>
                 
+
                 <div className="header__option">
                     <span className="header_optionLineone">Returns &</span>
                     <span className="header_optionLinetwo">Orders</span>
@@ -47,8 +62,8 @@ function Header() {
                     <span className="header_optionLineone">your Deal of</span>
                     <span className="header_optionLinetwo"> the Day</span>
 
-                
-                    </div>
+
+                </div>
                 <Link to="/checkout">
 
                     <div className="header__optionBasket">

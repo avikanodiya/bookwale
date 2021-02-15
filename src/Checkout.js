@@ -10,7 +10,7 @@ function Checkout() {
     return (
         <div className="checkout">
             <div className="checkout__left">
-                
+
 
                 <div>
                     <h3>Hello, {user?.email}</h3>
@@ -28,12 +28,12 @@ function Checkout() {
                     <div className="proceed_checkout">
                         <Subtotal />
                     </div>
-                    
+
 
                 </div>
             </div>
 
-            
+
         </div>
     );
 }
