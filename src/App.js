@@ -13,7 +13,7 @@ import Orders from "./Orders"
 import Payment from "./Payment";
 
 const promise = loadStripe(
-  "pk_test_51HPvU9DFg5koCdLGJJbNo60QAU99BejacsvnKvT8xnCu1wFLCuQP3WBArscK3RvSQmSIB3N0Pbsc7TtbQiJ1vaOi00X9sIbazL"
+  "pk_test_51ILLtKIKK9XemNXpnYSyLrrjuFRBdtqTYbPFOtcUvKLss29RYMUmuhTdxu2Tb9ZzSps5XJpvQ1lACbVRSX5kUcSO00ZcDX1Tce"
 );
 
 function App() {
