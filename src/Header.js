@@ -39,27 +39,25 @@ function Header() {
             </div>
 
             <div className="header_nav">
-                
-                    <div onClick={handleAuthentication} className="header__option">
-                    {!user ? <Link to={!user && '/login'}><span className="header_optionLineone">Hello Guest</span></Link> : <div class="dropdown">
-                            <button class="dropbtn header_optionLineone" ><span>{user.email}</span></button>
-                            <div class="dropdown-content">
-                                <a href="#">Change password</a>
+
+                <div onClick={handleAuthentication} className="header__option">
+                    {!user ? <Link to={!user && '/login'}><span className="header_optionLineone usermail">Hello Guest</span></Link> : <div class="dropdown">
+                        <button class="dropbtn header_optionLineone" ><span>{user.email}</span></button>
+                        <div class="dropdown-content">
                             <Link to="/"><a>Sign Out</a></Link>
-                            </div>
-                        </div>}
-
-                    </div>
-                
-
-                <div className="header__option">
-                    <span className="header_optionLineone">Returns &</span>
-                    <span className="header_optionLinetwo">Orders</span>
+                        </div>
+                    </div>}
 
                 </div>
 
+
                 <div className="header__option">
-                    <span className="header_optionLineone">your Deal of</span>
+                    <span className="header_optionLineone category">Category</span>
+
+                </div>
+
+                <div className="header__option dealoftheday">
+                    <span className="header_optionLineone ">your Deal of</span>
                     <span className="header_optionLinetwo"> the Day</span>
 
 

@@ -15,13 +15,13 @@ function Subtotal() {
         renderText={(value) => (
           <>
             <p>
-              
+
               Subtotal ({basket.length} items): <strong>{value}</strong>
-            </p>           
-         </>
+            </p>
+          </>
         )}
         decimalScale={2}
-        value={getBasketTotal(basket)} 
+        value={getBasketTotal(basket)}
         displayType={"text"}
         thousandSeparator={true}
         prefix={"₹"}

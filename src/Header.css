@@ -15,6 +15,10 @@
   margin-top: 18px;
 }
 
+.usermail {
+  margin: 12px;
+}
+
 .header_search {
   display: flex;
   flex: 1;
@@ -35,13 +39,19 @@
   background-color: cornsilk;
 }
 
-.header_optionLineone {
-  font-size: 13px;
+
+
+.category {
+  margin: 12px;
 }
 
 .header_optionLinetwo {
   font-size: 13px;
   font-weight: 800;
+}
+
+.dealoftheday {
+  margin: 12px;
 }
 
 .header__optionBasket {
@@ -51,8 +61,7 @@
 }
 
 .header__basketCount {
-  margin-right: 10px;
-  margin-left: 10px;
+  margin: 12px;
 }
 
 .header__option {
@@ -67,7 +76,6 @@
   display: flex;
   justify-content: space-evenly;
 }
-
 
 .dropbtn {
   background-color: #30bdcf;
@@ -88,7 +96,7 @@
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -99,7 +107,9 @@
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
 
 .dropdown:hover .dropdown-content {
   display: block;
