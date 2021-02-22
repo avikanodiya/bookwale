@@ -7,20 +7,28 @@ import firebase from './firebase';
 
 
 
-function Home({ bookslist }) {
-    const [{ books }, dispatch] = useStateValue();
-
-
+function Home({ bookslist, searchItem }) {
+    const [{ books, setSearchItem }, dispatch] = useStateValue();
 
 
     return (
         <section>
-            {bookslist.map(book => (<Product
+            {bookslist.filter(book => {
+                if (searchItem ==""){
+                    return book;
+                } else if(book.title.toLowerCase().includes(searchItem.toLowerCase())) {
+                    return book;
+                }
+
+                
+            }).map(book => (<Product
                 image={book.image}
                 title={book.title}
                 price={book.price}
-            ></Product>))}
+            ></Product>))
+            }
         </section>
+
     );
 }
 

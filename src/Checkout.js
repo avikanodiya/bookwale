@@ -25,12 +25,13 @@ function Checkout() {
                             rating={item.rating}
                         />
                     ))}
+                </div>
                     <div className="proceed_checkout">
                         <Subtotal />
                     </div>
 
 
-                </div>
+                
             </div>
 
 

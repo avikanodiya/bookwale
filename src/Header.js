@@ -1,22 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Header.css'
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { useStateValue } from './StateProvider';
 import { Link } from "react-router-dom";
 import { auth } from './firebase';
+import firebase, { db } from './firebase';
 
 
-function Header() {
+const Header = ({ booklist, setSearchItem, searchItem }) => {
     const [{ basket, user }, dispatch] = useStateValue();
-
-    const handleAuthentication = () => {
-        if (user) {
-            auth.signOut();
-
-        }
-    }
-
 
     return (
         //logo
@@ -31,7 +24,7 @@ function Header() {
 
 
             <div className="header_search">
-                <input className="header_searchInput" type="text" />
+                <input className="header_searchInput" type="text" onChange={e => setSearchItem(e.target.value)} />
                 <SearchIcon className="header__searchIcon" />
 
 
@@ -40,7 +33,7 @@ function Header() {
 
             <div className="header_nav">
 
-                <div onClick={handleAuthentication} className="header__option">
+                <div className="header__option">
                     {!user ? <Link to={!user && '/login'}><span className="header_optionLineone usermail">Hello Guest</span></Link> : <div class="dropdown">
                         <button class="dropbtn header_optionLineone" ><span>{user.email}</span></button>
                         <div class="dropdown-content">

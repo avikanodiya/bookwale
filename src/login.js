@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Login.css'
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
+import firebase from './firebase'
 
 function Login(props) {
 
@@ -45,9 +46,6 @@ function Login(props) {
                 <h1>Sign-in</h1>
 
                 <form>
-                    <h5>Username</h5>
-                    <input type='text' value={username} onChange={e => setUsername(e.target.value)} />
-
                     <h5>E-mail</h5>
                     <input type='text' value={email} onChange={e => setEmail(e.target.value)} />
 

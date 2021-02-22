@@ -19,8 +19,9 @@ const promise = loadStripe(
 );
 
 function App() {
-
+  
   const [bookslist, setBookslist] = useState([]);
+  const [searchItem, setSearchItem] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       const data = await db.collection("books").get()
@@ -30,54 +31,56 @@ function App() {
   }, [])
 
 
-  const [{ books }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
 
   useEffect(() => {
-    auth.onAuthStateChanged(authUser => {
-      console.log("the user is >>>", authUser);
+    // will only run once when the app component loads...
+
+    auth.onAuthStateChanged((authUser) => {
+      console.log("THE USER IS >>> ", authUser);
 
       if (authUser) {
-        //user logged in
+        // the user just logged in / the user was logged in
 
         dispatch({
           type: "SET_USER",
           user: authUser,
         });
-
       } else {
-        //user logged out
+        // the user is logged out
         dispatch({
           type: "SET_USER",
           user: null,
         });
-
       }
-    })
-  }, [])
+    });
+  }, []);
+
+
   return (
     <Router>
       <div className="app">
         <Switch>
           <Route path="/orders">
-            <Header />
+            <Header searchItem={searchItem} setSearchItem={setSearchItem}/>
             <Orders />
           </Route>
           <Route path="/login">
             <Login />
           </Route>
           <Route path="/checkout">
-            <Header />
+            <Header searchItem={searchItem} setSearchItem={setSearchItem}/>
             <Checkout />
           </Route>
           <Route path="/payment">
-            <Header />
+            <Header searchItem={searchItem} setSearchItem={setSearchItem}/>
             <Elements stripe={promise}>
               <Payment />
             </Elements>
           </Route>
           <Route path="/">
-            <Header />
-            <Home bookslist={bookslist} />
+            <Header searchItem={searchItem} setSearchItem={setSearchItem}/>
+            <Home bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem}/>
           </Route>
         </Switch>
       </div>
