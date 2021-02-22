@@ -1,26 +1,25 @@
-import { React, useState, useEffect } from "react";
+import React from 'react'
 import "./Home.css";
 import Product from "./Product";
 import { useStateValue } from "./StateProvider";
-import { ref, db, auth, database } from './firebase'
-import firebase from './firebase';
 
-
-
-function Home({ bookslist, searchItem }) {
-    const [{  }, dispatch] = useStateValue();
-
-
+function Engineering({ bookslist, searchItem }) {
+    const [{ }, dispatch] = useStateValue();
+    var bookslist = bookslist.filter(book => {
+        if (book.category == "Engineering") {
+            return book;
+        }
+    })
     return (
         <section>
             {bookslist.filter(book => {
-                if (searchItem ==""){
+                if (searchItem == "") {
                     return book;
-                } else if(book.title.toLowerCase().includes(searchItem.toLowerCase())) {
+                } else if (book.title.toLowerCase().includes(searchItem.toLowerCase())) {
                     return book;
                 }
 
-                
+
             }).map(book => (<Product
                 image={book.image}
                 title={book.title}
@@ -28,8 +27,7 @@ function Home({ bookslist, searchItem }) {
             ></Product>))
             }
         </section>
-
-    );
+    )
 }
 
-export default Home;
+export default Engineering

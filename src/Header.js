@@ -11,6 +11,12 @@ import firebase, { db } from './firebase';
 const Header = ({ booklist, setSearchItem, searchItem }) => {
     const [{ basket, user }, dispatch] = useStateValue();
 
+    const handleAuthenticaton = () => {
+        if (user) {
+            auth.signOut();
+        }
+    }
+
     return (
         //logo
         <div className='header'>
@@ -34,9 +40,9 @@ const Header = ({ booklist, setSearchItem, searchItem }) => {
             <div className="header_nav">
 
                 <div className="header__option">
-                    {!user ? <Link to={!user && '/login'}><span className="header_optionLineone usermail">Hello Guest</span></Link> : <div class="dropdown">
+                    {!user ? <Link to={!user && '/login'} className="usermail"><span className="header_optionLineone dropbtn">SignIn Here</span></Link> : <div class="dropdown">
                         <button class="dropbtn header_optionLineone" ><span>{user.email}</span></button>
-                        <div class="dropdown-content">
+                        <div class="dropdown-content" onClick={handleAuthenticaton}>
                             <Link to="/"><a>Sign Out</a></Link>
                         </div>
                     </div>}
@@ -45,12 +51,19 @@ const Header = ({ booklist, setSearchItem, searchItem }) => {
 
 
                 <div className="header__option">
-                    <span className="header_optionLineone category">Category</span>
+                    <div class="dropdown">
+                        <button class="dropbtn header_optionLineone" ><span>Category</span></button>
+                        <div class="dropdown-content">
+                            <Link to="science"><a>Science</a></Link>
+                            <Link to="commerce"><a>Commerce</a></Link>
+                            <Link to="engineering"><a>Engineering</a></Link>
+                        </div>
+                    </div>
 
                 </div>
 
                 <div className="header__option dealoftheday">
-                    <span className="header_optionLineone ">your Deal of</span>
+                    <span className="header_optionLineone">your Deal of</span>
                     <span className="header_optionLinetwo"> the Day</span>
 
 
