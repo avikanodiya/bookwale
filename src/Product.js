@@ -1,8 +1,8 @@
 import React from "react";
 import "./Product.css";
 import { useStateValue } from "./StateProvider";
-import { Button, Card } from 'react-bootstrap';
-
+import Button from '@material-ui/core/Button';
+import ShoppingBasketSharpIcon from '@material-ui/icons/ShoppingBasketSharp';
 
 function Product({ id, title, image, price, rating }) {
     const [{ state, basket }, dispatch] = useStateValue();
@@ -23,7 +23,8 @@ function Product({ id, title, image, price, rating }) {
 
     };
 
-    return (
+    return ( 
+        <>
         <div className="product">
             <div className="product__info">
                 <p>{title}</p>
@@ -35,9 +36,10 @@ function Product({ id, title, image, price, rating }) {
             </div>
 
             <img src={image} alt="" />
-
-            <Button className="button" onClick={addToBasket} type="button">Add to Basket</Button>
+                <Button startIcon={<ShoppingBasketSharpIcon/>} onClick={addToBasket} color="black" variant="contained" color="primary">Add to Basket</Button>
         </div>
+        
+        </>
     );
 }
 
