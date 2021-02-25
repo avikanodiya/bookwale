@@ -14,6 +14,7 @@ import Payment from "./Payment";
 import Science from "./Science";
 import Commerce from "./Commerce";
 import Engineering from "./Engineering";
+import Deals from './Deals'
 import firebase from './firebase';
 import Button from "@material-ui/core";
 
@@ -93,6 +94,10 @@ function App() {
           <Route path="/engineering">
             <Header searchItem={searchItem} setSearchItem={setSearchItem} />
             <Engineering bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem} />
+          </Route>
+          <Route path="/deals">
+            <Header searchItem={searchItem} setSearchItem={setSearchItem} />
+            <Deals bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem}/>
           </Route>
           <Route path="/">
             <Header searchItem={searchItem} setSearchItem={setSearchItem} />

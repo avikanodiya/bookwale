@@ -5,6 +5,7 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { useStateValue } from './StateProvider';
 import { Link } from "react-router-dom";
 import { auth } from './firebase';
+import Deals from './Deals';
 import firebase, { db } from './firebase';
 
 
@@ -62,24 +63,27 @@ const Header = ({ booklist, setSearchItem, searchItem }) => {
 
                 </div>
 
-                <div className="header__option dealoftheday">
+                <Link to='/deals'><div className="header__option dealoftheday">
                     <span className="header_optionLineone">your Deal of</span>
                     <span className="header_optionLinetwo"> the Day</span>
 
 
-                </div>
-                <Link to="/checkout">
+                </div></Link>
+                {user ? <Link to="/checkout">
 
                     <div className="header__optionBasket">
                         <ShoppingBasketIcon />
                         <span className="header__optionLinetwo header__basketCount">{basket?.length}</span>
 
                     </div>
-                </Link>
-
-
-
+                </Link> : <div className="header__optionBasket" onClick={() => alert('SignIn first')} style={{cursor: 'pointer'}}>
+                        <ShoppingBasketIcon />
+                        <span className="header__optionLinetwo header__basketCount">{basket?.length}</span></div>}
             </div>
+
+
+
+
 
         </div>
     )
