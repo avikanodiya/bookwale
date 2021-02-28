@@ -2,11 +2,45 @@ import React, { useState } from 'react';
 import './Login1.css'
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
-import firebase from './firebase'
+import firebase from './firebase';
+import { makeStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 function Login(props) {
 
+    const useStyles = makeStyles((theme) => ({
+        paper: {
+            marginTop: theme.spacing(8),
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+        },
+        avatar: {
+            margin: theme.spacing(1),
+            backgroundColor: theme.palette.secondary.main,
+        },
+        form: {
+            width: '100%', // Fix IE 11 issue.
+            marginTop: theme.spacing(3),
+        },
+        submit: {
+            margin: theme.spacing(0, 0, 2),
+        },
+    }));
+
     const history = useHistory();
+    const classes = useStyles();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -32,37 +66,81 @@ function Login(props) {
     }
 
 
-    
+
     return (
-        <div className='login'>
-            <Link to='/'>
-                <img
-                    className="login__logo"
-                    src=''
-                    alt="bookshop logo"
-                />
-            </Link>
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div className={classes.paper} >
+                <Avatar className={classes.avatar} style={{ background: '#03a9f4' }}>
+                    <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Sign In
+        </Typography>
+                <form className={classes.form} noValidate >
+                    <Grid container spacing={2}>
 
-            <div className='login__container'>
-                <h1>Sign-in</h1>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email Address"
+                                name="email"
+                                value={email}
+                                autoComplete="email"
+                                onChange={e => setEmail(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="password"
+                                value={password}
+                                label="Password"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                        </Grid>
 
-                <form>
-                    <h5>E-mail</h5>
-                    <input type='text' value={email} onChange={e => setEmail(e.target.value)} />
 
-                    <h5>Password</h5>
-                    <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
+                        <Grid item xs={12}>
+                            <Button
+                                onClick={signIn}
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}>Sign In</Button>
+                            <Button
+                                onClick={register}
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}>Sign Up</Button>
 
-                    <button onClick={signIn} type='submit' className='login__signInButton'>Sign In</button>
+                        </Grid>
+                        <Grid container justify="flex-end">
+                            <Grid item>
+                                <Link to="/" variant="body2">
+                                   Back to Home...
+              </Link>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
                 </form>
-
-
-
-                <button onClick={register} className='login__registerButton'>Create your Account</button>
-
             </div>
-        </div>
-    )
+
+        </Container>
+    );
+
 }
 
 export default Login

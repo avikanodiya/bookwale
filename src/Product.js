@@ -36,7 +36,7 @@ function Product({ id, title, image, price, rating }) {
             </div>
 
             <img src={image} alt="" />
-                <Button startIcon={<ShoppingBasketSharpIcon/>} onClick={addToBasket} color="black" variant="contained" color="primary">Add to Basket</Button>
+                <Button startIcon={<ShoppingBasketSharpIcon />} onClick={addToBasket} color="black" variant="contained" style={{ background: '#03a9f4'}}>Add to Basket</Button>
         </div>
         
         </>
