@@ -12,20 +12,10 @@ function Engineering({ bookslist, searchItem }) {
     })
     return (
         <section>
-            {bookslist.filter(book => {
-                if (searchItem == "") {
-                    return book;
-                } else if (book.title.toLowerCase().includes(searchItem.toLowerCase())) {
-                    return book;
-                }
-
-
-            }).map(book => (<Product
-                image={book.image}
-                title={book.title}
-                price={book.price}
-            ></Product>))
-            }
+            <Product
+                bookslist={bookslist}
+                searchItem={searchItem}
+            ></Product>
         </section>
     )
 }

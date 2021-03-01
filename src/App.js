@@ -27,12 +27,15 @@ function App() {
 
   const [bookslist, setBookslist] = useState([]);
   const [searchItem, setSearchItem] = useState("");
+
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await db.collection("books").get()
       setBookslist(data.docs.map(doc => doc.data()))
     }
     fetchData()
+
   }, [])
 
 
@@ -97,7 +100,7 @@ function App() {
           </Route>
           <Route path="/deals">
             <Header searchItem={searchItem} setSearchItem={setSearchItem} />
-            <Deals bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem}/>
+            <Deals bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem} />
           </Route>
           <Route path="/">
             <Header searchItem={searchItem} setSearchItem={setSearchItem} />
