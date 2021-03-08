@@ -5,7 +5,7 @@ import Home from "./Home";
 import Header from './Header';
 import Checkout from "./Checkout"
 import Login from "./Login1"
-import { db, auth } from "./firebase"
+import { auth } from "./firebase"
 import { useStateValue } from "./StateProvider";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -15,8 +15,7 @@ import Science from "./Science";
 import Commerce from "./Commerce";
 import Engineering from "./Engineering";
 import Deals from './Deals'
-import firebase from './firebase';
-import Button from "@material-ui/core";
+import Greeting from './Greeting'
 
 
 const promise = loadStripe(
@@ -31,12 +30,33 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await db.collection("books").get()
-      setBookslist(data.docs.map(doc => doc.data()))
+      const response = await fetch("https://bookstore-dc5e8-default-rtdb.firebaseio.com/products.json")
+      const data = await response.json();
+      var keys = Object.keys(data);
+      var bookslist = [];
+      for (let i in data) {
+        var k = keys[i];
+        console.log(k);
+        bookslist.push(data[i]);
+      }
+      console.log(bookslist);
+      console.log(data);
+      console.log(keys);
+      setBookslist(bookslist);
     }
     fetchData()
 
+
   }, [])
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await db.collection("books").get()
+  //     setBookslist(data.docs.map(doc => doc.data()))
+  //   }
+  //   fetchData()
+
+  // }, [])
+  console.log(bookslist);
 
 
   const [{ }, dispatch] = useStateValue();
@@ -102,10 +122,14 @@ function App() {
             <Header searchItem={searchItem} setSearchItem={setSearchItem} />
             <Deals bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem} />
           </Route>
+          <Route path="/greeting">
+            <Greeting />
+          </Route>
           <Route path="/">
             <Header searchItem={searchItem} setSearchItem={setSearchItem} />
             <Home bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem} />
           </Route>
+
         </Switch>
       </div>
     </Router>

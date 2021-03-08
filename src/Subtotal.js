@@ -6,11 +6,11 @@ import { getBasketTotal } from "./reducer";
 import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button"
 
-function Subtotal() {
+function Subtotal({ basketValue, setbasketValue }) {
   const history = useHistory();
   const [{ basket }, dispatch] = useStateValue();
   const [discount, setDiscount] = useState('');
-  const [basketValue, setbasketValue] = useState(getBasketTotal(basket));
+
 
   // const getInputValue = () => {
   //   var inputVal = document.getElementById("myinput").value;
@@ -20,22 +20,14 @@ function Subtotal() {
   //     console.log(basketvalue);
   //   }
   // }
+
+
   useEffect(() => {
   }, [basketValue])
 
-  const valueHandler = (basketvalue) => {
-    console.log(basketvalue, 'sssssssssssssss');
-    if (discount === 'first50') {
-      setbasketValue(basketvalue - basketvalue / 100 * 50);
-      console.log(basketValue);
-    }
-  }
-
-
-
   return (
     <div className="subtotal">
-      <p>Promo Code : <input className="promo__input" type="text" onChange={(e) => setDiscount(e.target.value.toString().toLowerCase())} /> <Button variant="contained" color="primary" onClick={() => valueHandler(basketValue)}> Apply</Button></p>
+
       <CurrencyFormat
         renderText={(value) => (
           <>
@@ -50,8 +42,10 @@ function Subtotal() {
         thousandSeparator={true}
         prefix={"₹"}
       />
+      {!basketValue ? <Button color="primary" disabled variant="contained" onClick={e => history.push('/payment')}>Proceed to Checkout</Button> :
+        <Button color="primary" size="small" variant="contained" onClick={e => history.push('/payment')}>Proceed to Checkout</Button>
+      }
 
-      <Button variant="contained" className onClick={e => history.push('/payment')}>Proceed to Checkout</Button>
     </div>
   );
 }

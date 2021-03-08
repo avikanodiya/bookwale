@@ -1,5 +1,6 @@
 .payment {
   background-color: white;
+  padding-left: 0;
 }
 
 .payment__container > h1 {
@@ -17,7 +18,8 @@
 .payment__section {
   display: flex;
   padding: 20px;
-  margin: 0 20px;
+  margin: 0;
+  padding-left: 0;
   border-bottom: 1px solid lightgray;
 }
 
@@ -57,5 +59,6 @@
 
 .address__area {
   resize: none;
- 
 }
+
+

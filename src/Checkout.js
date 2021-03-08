@@ -1,41 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Checkout.css";
 import Subtotal from "./Subtotal";
 import { useStateValue } from "./StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
+import { Avatar, IconButton, Grid, Box } from "@material-ui/core";
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import { getBasketTotal } from "./reducer";
 
 function Checkout() {
     const [{ basket, user }, dispatch] = useStateValue();
+    const [basketValue, setbasketValue] = useState(getBasketTotal(basket));
+    console.log(basket);
 
     return (
-        <div className="checkout">
-            <div className="checkout__left">
+        <Grid item xs={12} sm={6} md={4}>
+
+            <Typography variant="h5" display="block" gutterBottom align='center'>
+                hello, {user?.email}
+            </Typography>
+            <Box borderBottom={1}>
+                <Typography variant="h6">
+                    YOUR SHOPPING BASKET !
+            </Typography>
+            </Box>
+            <Box border={1}>
+                {basket.map(item => (
+                    <CheckoutProduct
+
+                        title={item.title}
+                        image={item.image}
+                        price={item.price}
+                        rating={item.rating}
+                    />
+
+                ))}
+
+            </Box>
+            <Box style={{ paddingTop: 20 }}>
+                <Subtotal
+                    basketValue={basketValue}
+                    setbasketValue={setbasketValue} />
+            </Box>
+        </Grid >
 
 
-                <div>
-                    <h3>Hello, {user?.email}</h3>
-                    <h2 className="checkout__title">Your shopping Basket</h2>
-
-                    {basket.map(item => (
-                        <CheckoutProduct
-                            id={item.id}
-                            title={item.title}
-                            image={item.image}
-                            price={item.price}
-                            rating={item.rating}
-                        />
-                    ))}
-                </div>
-                    <div className="proceed_checkout">
-                        <Subtotal />
-                    </div>
 
 
-                
-            </div>
-
-
-        </div>
     );
 }
 

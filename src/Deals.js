@@ -12,20 +12,21 @@ function Deals({ bookslist, searchItem }) {
 
 
     return (
-        <section><marquee style={{color: 'green'}}>20% discount on below products</marquee>
-        
+        <section><marquee style={{ color: 'green' }}>20% discount on below products</marquee>
+
             {bookslist.filter(book => {
-                if (book.price > 300) {
+                if (book.price >= 1000) {
                     if (searchItem == "") {
                         return book;
                     } else if (book.title.toLowerCase().includes(searchItem.toLowerCase())) {
                         return book;
-                    }}
-                
+                    }
+                }
+
 
 
             }).map(book => (<Productdeal
-                image={book.image}
+                image={book.imageUrl}
                 title={book.title}
                 price={book.price}
             ></Productdeal>))

@@ -64,9 +64,9 @@ function Product({ bookslist, searchItem }) {
         dispatch({
             type: 'ADD_TO_BASKET',
             item: {
-                id: book.id,
+                
                 title: book.title,
-                image: book.image,
+                image: book.imageUrl,
                 price: book.price,
             },
 
@@ -122,19 +122,20 @@ function Product({ bookslist, searchItem }) {
                         return book;
                     } else if (book.title.toLowerCase().includes(searchItem.toLowerCase())) {
                         return book;
+                        
                     }
-                }).map(book => (<Grid item xs={12} sm={6} md={4} >
+                }).map(book => (<Grid key={book.id} item xs={12} sm={6} md={4} >
                     <Card className={classes.cardStyle}>
                         <CardMedia
                             className={classes.media}
-                            image={book.image}
+                            image={book.imageUrl}
                         />
                         <CardHeader
                             title={book.title}
                         />
                         <CardContent>
                             <Typography variant="h5" gutterBottom>
-                                {book.price}
+                                ₹{book.price}
                             </Typography>
                             {/* <AddBoxRoundedIcon onClick={addToBasket} varient="contained" className={classes.icon} type="submit" /> */}
 

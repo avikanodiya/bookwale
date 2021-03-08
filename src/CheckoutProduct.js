@@ -1,14 +1,15 @@
 import React from 'react';
 import './CheckoutProduct.css'
 import { useStateValue } from "./StateProvider";
+import Button from '@material-ui/core/Button';
 
-function CheckoutProduct({ id, image, title, price,hideButton }) {
+function CheckoutProduct({ image, title, price, hideButton }) {
     const [{ basket }, dispatch] = useStateValue();
 
     const removeFromBasket = () => {
         dispatch({
             type: 'REMOVE_FROM_BASKET',
-            id: id,
+
         })
     }
 
@@ -22,9 +23,9 @@ function CheckoutProduct({ id, image, title, price,hideButton }) {
                     <small>₹</small>
                     <strong>{price}</strong>
                 </p>
-                
+
                 {!hideButton && (
-                    <button onClick={removeFromBasket}>Remove from Basket</button>
+                    <Button size="small" variant="contained" color="secondary" onClick={removeFromBasket}>Remove from Basket</Button>
                 )}
             </div>
         </div>
