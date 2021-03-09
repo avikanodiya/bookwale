@@ -25,7 +25,7 @@ function CheckoutProduct({ image, title, price, hideButton }) {
                 </p>
 
                 {!hideButton && (
-                    <Button size="small" variant="contained" color="secondary" onClick={removeFromBasket}>Remove</Button>
+                    <Button style={{ marginTop: "7px" }} size="small" variant="contained" color="secondary" onClick={removeFromBasket}>Remove</Button>
                 )}
             </div>
 
