@@ -161,8 +161,8 @@ const Header = ({ booklist, setSearchItem, searchItem, category, setCategory }) 
                             open={Boolean(anchorEl1)}
                             onClose={handleClose1}
                         >
-                            <MenuItem onClick={()=>{
-                                handleMobileMenuClose() 
+                            <MenuItem onClick={() => {
+                                handleMobileMenuClose()
                                 handleAuthenticaton()
                             }}>Sign Out</MenuItem>
                         </Menu></>}
@@ -206,7 +206,7 @@ const Header = ({ booklist, setSearchItem, searchItem, category, setCategory }) 
                 </Menu>
             </MenuItem>
             <MenuItem>
-                <Button color="inherit" component={Link} to="/deals">Deal of the day</Button>
+                <Button onClick={handleMobileMenuClose} color="inherit" component={Link} to="/deals">Deal of the day</Button>
             </MenuItem>
 
         </Menu >
