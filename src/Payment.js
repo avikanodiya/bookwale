@@ -169,7 +169,7 @@ function Payment() {
                                 <h3>Order Total: {basketValue}</h3>
 
                             </div>
-                            <Button variant="contained" onClick={handleSubmit} component={Link} to="/" style={{ marginTop: '10px' }} color="secondary">Buy now</Button>
+                            <Button size="small" variant="contained" onClick={handleSubmit} component={Link} to="/" style={{ marginTop: '10px' }} color="secondary">Buy now</Button>
                             {/* Errors */}
 
                         </form>
