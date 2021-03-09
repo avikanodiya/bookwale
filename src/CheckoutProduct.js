@@ -28,6 +28,7 @@ function CheckoutProduct({ image, title, price, hideButton }) {
                     <Button size="small" variant="contained" color="secondary" onClick={removeFromBasket}>Remove from Basket</Button>
                 )}
             </div>
+
         </div>
     )
 }
