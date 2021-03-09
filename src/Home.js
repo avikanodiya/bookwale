@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
 
-function Home({ bookslist, searchItem ,bookdata}) {
+function Home({ bookslist, searchItem, bookdata }) {
     const useStyles = makeStyles((theme) => ({
         hero: {
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://c1.wallpaperflare.com/preview/281/150/428/various-book-books.jpg')`,
@@ -28,19 +28,19 @@ function Home({ bookslist, searchItem ,bookdata}) {
             }
         }
     }));
-    
+
 
     const [{ }, dispatch] = useStateValue();
     const classes = useStyles();
 
     return (<><Box className={classes.hero}>
-        <Box>Perfect Place for your Brain!!!</Box>
+        <Box align="center">Books At Your Doorstep!</Box>
     </Box>
         <section>
             <Product
                 bookslist={bookslist}
                 searchItem={searchItem}
-                
+
             ></Product>
         </section>
     </>

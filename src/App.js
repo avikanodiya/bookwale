@@ -11,11 +11,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Orders from "./Orders"
 import Payment from "./Payment";
-import Science from "./Science";
-import Commerce from "./Commerce";
-import Engineering from "./Engineering";
 import Deals from './Deals'
 import Greeting from './Greeting'
+import Category from "./Category";
 
 
 const promise = loadStripe(
@@ -26,6 +24,7 @@ function App() {
 
   const [bookslist, setBookslist] = useState([]);
   const [searchItem, setSearchItem] = useState("");
+  const [category,setCategory] = useState('');
 
 
   useEffect(() => {
@@ -90,43 +89,35 @@ function App() {
       <div className="app">
         <Switch>
           <Route path="/orders">
-            <Header searchItem={searchItem} setSearchItem={setSearchItem} />
+            <Header searchItem={searchItem} setSearchItem={setSearchItem} category={category} setCategory={setCategory} />
             <Orders />
           </Route>
           <Route path="/login">
             <Login />
           </Route>
           <Route path="/checkout">
-            <Header searchItem={searchItem} setSearchItem={setSearchItem} />
+            <Header searchItem={searchItem} setSearchItem={setSearchItem} category={category} setCategory={setCategory} />
             <Checkout />
           </Route>
           <Route path="/payment">
-            <Header searchItem={searchItem} setSearchItem={setSearchItem} />
+            <Header searchItem={searchItem} setSearchItem={setSearchItem} category={category} setCategory={setCategory} />
             <Elements stripe={promise}>
               <Payment />
             </Elements>
           </Route>
-          <Route path="/science">
-            <Header searchItem={searchItem} setSearchItem={setSearchItem} />
-            <Science bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem} />
-          </Route>
-          <Route path="/commerce">
-            <Header searchItem={searchItem} setSearchItem={setSearchItem} />
-            <Commerce bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem} />
-          </Route>
-          <Route path="/engineering">
-            <Header searchItem={searchItem} setSearchItem={setSearchItem} />
-            <Engineering bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem} />
+          <Route path="/category">
+            <Header searchItem={searchItem} setSearchItem={setSearchItem} category={category} setCategory={setCategory} />
+            <Category bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem} category={category} setCategory={setCategory} />
           </Route>
           <Route path="/deals">
-            <Header searchItem={searchItem} setSearchItem={setSearchItem} />
+            <Header searchItem={searchItem} setSearchItem={setSearchItem} category={category} setCategory={setCategory}/>
             <Deals bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem} />
           </Route>
           <Route path="/greeting">
             <Greeting />
           </Route>
           <Route path="/">
-            <Header searchItem={searchItem} setSearchItem={setSearchItem} />
+            <Header searchItem={searchItem} setSearchItem={setSearchItem} category={category} setCategory={setCategory} />
             <Home bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem} />
           </Route>
 

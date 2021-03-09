@@ -5,15 +5,33 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { useStateValue } from './StateProvider';
 import { Link } from "react-router-dom";
 import { auth } from './firebase';
-import Deals from './Deals';
-import firebase, { db } from './firebase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, InputBase, Button, Menu, MenuItem } from "@material-ui/core"
-import { grey } from '@material-ui/core/colors';
+import IconButton from '@material-ui/core/IconButton';
+import MoreIcon from '@material-ui/icons/MoreVert';
 
 
-const Header = ({ booklist, setSearchItem, searchItem}) => {
+const Header = ({ booklist, setSearchItem, searchItem, category, setCategory }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+
+    console.log(category);
+
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+
+    const handleMobileMenuClose = () => {
+        setMobileMoreAnchorEl(null);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+        handleMobileMenuClose();
+    };
+
+    const handleMobileMenuOpen = (event) => {
+        setMobileMoreAnchorEl(event.currentTarget);
+    };
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -71,7 +89,7 @@ const Header = ({ booklist, setSearchItem, searchItem}) => {
             },
         },
         searchIcon: {
-            padding: theme.spacing(0, 2),
+            padding: theme.spacing(0, 1),
             height: '100%',
             position: 'absolute',
             pointerEvents: 'none',
@@ -103,6 +121,7 @@ const Header = ({ booklist, setSearchItem, searchItem}) => {
             [theme.breakpoints.up('md')]: {
                 display: 'none',
             },
+
         },
     }));
 
@@ -116,6 +135,82 @@ const Header = ({ booklist, setSearchItem, searchItem}) => {
         }
     }
 
+
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+
+    const renderMobileMenu = (
+        <Menu
+            anchorEl={mobileMoreAnchorEl}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            id={mobileMenuId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={isMobileMenuOpen}
+            onClose={handleMobileMenuClose}
+        >
+            <MenuItem>
+                <Button onClick={handleMobileMenuClose} color="inherit" component={Link} to="/">Home</Button>
+            </MenuItem>
+            <MenuItem>
+                {!user ? <Button varient="contained" color="inherit" component={Link} to={!user && "/login"}>Login</Button> :
+                    <><Button color="inherit" aria-controls="logout" aria-haspopup="true" onClick={handleClick1}>{user.email}</Button>
+                        <Menu
+                            id="logout"
+                            anchorEl={anchorEl1}
+                            keepMounted
+                            open={Boolean(anchorEl1)}
+                            onClose={handleClose1}
+                        >
+                            <MenuItem onClick={()=>{
+                                handleMobileMenuClose() 
+                                handleAuthenticaton()
+                            }}>Sign Out</MenuItem>
+                        </Menu></>}
+            </MenuItem>
+            <MenuItem>
+                <Button color="inherit" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                    Category
+                        </Button>
+                <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    <MenuItem onClick={() => {
+                        handleClose();
+                        setCategory('Law')
+                        handleMobileMenuClose()
+                    }} component={Link} to="/category">Law</MenuItem>
+                    <MenuItem onClick={() => {
+                        handleClose()
+                        setCategory('Engineering')
+                        handleMobileMenuClose()
+                    }} component={Link} to="/category">Engineering</MenuItem>
+                    <MenuItem onClick={() => {
+                        handleClose()
+                        setCategory('Bcom')
+                        handleMobileMenuClose()
+                    }} component={Link} to="/category">Bcom</MenuItem>
+                    <MenuItem onClick={() => {
+                        handleClose()
+                        setCategory('Bca')
+                        handleMobileMenuClose()
+                    }} component={Link} to="/category">Bca</MenuItem>
+                    <MenuItem onClick={() => {
+                        handleClose()
+                        setCategory('Mca')
+                        handleMobileMenuClose()
+                    }} component={Link} to="/category">Mca</MenuItem>
+                </Menu>
+            </MenuItem>
+            <MenuItem>
+                <Button color="inherit" component={Link} to="/deals">Deal of the day</Button>
+            </MenuItem>
+
+        </Menu >
+    );
 
 
     return (
@@ -140,17 +235,17 @@ const Header = ({ booklist, setSearchItem, searchItem}) => {
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                       {!user ? <Button varient="contained" color="inherit" component={Link} to={!user && "/login"}>Login</Button>:
-                            <><Button color="inherit" aria-controls="logout" aria-haspopup="true" onClick={handleClick1 }>{user.email}</Button>
-                       <Menu
-                            id="logout"
-                            anchorEl={anchorEl1}
-                            keepMounted
-                            open={Boolean(anchorEl1)}
-                            onClose={handleClose1}
-                        >
-                                    <MenuItem onClick={handleClose1, handleAuthenticaton }>Sign Out</MenuItem>
-                            </Menu></>}
+                        {!user ? <Button varient="contained" color="inherit" component={Link} to={!user && "/login"}>Login</Button> :
+                            <><Button color="inherit" aria-controls="logout" aria-haspopup="true" onClick={handleClick1}>{user.email}</Button>
+                                <Menu
+                                    id="logout"
+                                    anchorEl={anchorEl1}
+                                    keepMounted
+                                    open={Boolean(anchorEl1)}
+                                    onClose={handleClose1}
+                                >
+                                    <MenuItem onClick={handleClose1, handleAuthenticaton}>Sign Out</MenuItem>
+                                </Menu></>}
                         <Button color="inherit" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                             Category
                         </Button>
@@ -175,15 +270,24 @@ const Header = ({ booklist, setSearchItem, searchItem}) => {
 
                         </div>
                     </Link> : <div className="header__optionBasket" onClick={() => alert('SignIn first')} style={{ cursor: 'pointer' }}>
-                            <ShoppingBasketIcon />
-                            <span className="header__optionLinetwo header__basketCount">{basket?.length}</span></div>}
+                        <ShoppingBasketIcon />
+                        <span className="header__optionLinetwo header__basketCount">{basket?.length}</span></div>}
+
+                    <div className={classes.sectionMobile}>
+                        <IconButton
+                            aria-label="show more"
+                            aria-controls={mobileMenuId}
+                            aria-haspopup="true"
+                            onClick={handleMobileMenuOpen}
+                            color="inherit"
+                        >
+                            <MoreIcon />
+                        </IconButton>
+                    </div>
                 </Toolbar>
             </AppBar>
-
-
-
-
-
+            {renderMobileMenu}
+            {/* {renderMenu} */}
         </div>
     )
 }
