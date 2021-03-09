@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
         // height: 35,
         cursor: "pointer",
     },
-    
+
     // button: {
     //     flexGrow:1,
     // }
@@ -64,7 +64,7 @@ function Product({ bookslist, searchItem }) {
         dispatch({
             type: 'ADD_TO_BASKET',
             item: {
-                
+
                 title: book.title,
                 image: book.imageUrl,
                 price: book.price,
@@ -122,7 +122,7 @@ function Product({ bookslist, searchItem }) {
                         return book;
                     } else if (book.title.toLowerCase().includes(searchItem.toLowerCase())) {
                         return book;
-                        
+
                     }
                 }).map(book => (<Grid key={book.id} item xs={12} sm={6} md={4} >
                     <Card className={classes.cardStyle}>
@@ -132,6 +132,7 @@ function Product({ bookslist, searchItem }) {
                         />
                         <CardHeader
                             title={book.title}
+                            subheader={book.category}
                         />
                         <CardContent>
                             <Typography variant="h5" gutterBottom>
