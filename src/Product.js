@@ -17,6 +17,7 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 import ShoppingBasketSharpIcon from '@material-ui/icons/ShoppingBasketSharp';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -150,7 +151,7 @@ function Product({ bookslist, searchItem }) {
 
                     </Card>
                 </Grid>))}
-
+                
 
             </Grid>
         </div >

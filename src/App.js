@@ -14,6 +14,7 @@ import Payment from "./Payment";
 import Deals from './Deals'
 import Greeting from './Greeting'
 import Category from "./Category";
+import PrivacyPolicy from "./PrivacyPolicy";
 
 
 const promise = loadStripe(
@@ -24,7 +25,7 @@ function App() {
 
   const [bookslist, setBookslist] = useState([]);
   const [searchItem, setSearchItem] = useState("");
-  const [category,setCategory] = useState('');
+  const [category, setCategory] = useState('');
 
 
   useEffect(() => {
@@ -110,11 +111,14 @@ function App() {
             <Category bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem} category={category} setCategory={setCategory} />
           </Route>
           <Route path="/deals">
-            <Header searchItem={searchItem} setSearchItem={setSearchItem} category={category} setCategory={setCategory}/>
+            <Header searchItem={searchItem} setSearchItem={setSearchItem} category={category} setCategory={setCategory} />
             <Deals bookslist={bookslist} setSearchItem={setSearchItem} searchItem={searchItem} />
           </Route>
           <Route path="/greeting">
             <Greeting />
+          </Route>
+          <Route path="/privacypolicy">
+            <PrivacyPolicy />
           </Route>
           <Route path="/">
             <Header searchItem={searchItem} setSearchItem={setSearchItem} category={category} setCategory={setCategory} />

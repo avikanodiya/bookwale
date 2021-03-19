@@ -2,11 +2,10 @@ import { React, useState, useEffect } from "react";
 import "./Home.css";
 import Product from "./Product";
 import { useStateValue } from "./StateProvider";
-import { ref, db, auth, database } from './firebase'
-import firebase from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-
+import { Container, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 function Home({ bookslist, searchItem, bookdata }) {
     const useStyles = makeStyles((theme) => ({
@@ -43,6 +42,9 @@ function Home({ bookslist, searchItem, bookdata }) {
 
             ></Product>
         </section>
+        <Container >
+            <Typography  component={Link} to="/privacypolicy">Privacy Policy</Typography>
+        </Container>
     </>
 
     );
